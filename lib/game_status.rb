@@ -37,15 +37,15 @@ def full?(board)
   end
 end
 
-# Check to see if the game was a draw - 
+# Check to see if the game was a draw -
 #=> full?() is true
-#=> won?() is false 
+#=> won?() is false
 def draw?(board)
   full?(board) && !won?(board)
 end
 
 # Check to see if the game is over
-#=> draw?() is true 
+#=> draw?() is true
 #=> OR
 #=> won?() is true
 def over?(board)
