@@ -1,6 +1,6 @@
 # Helper Method
 def position_taken?(board, index)
-  # returns false if position is NOT taken
+  # returns false if position is NOT taken == yes, taken
   !(board[index].nil? || board[index] == " ")
 end
 
@@ -28,20 +28,31 @@ def won?(board)
   # be able to determine how the winner won whether the winner is X or O
 
   # ---------
-  
+
+  # WIN_COMBINATIONS.each do |win_combination|
+  #     win_index_1 = win_combination[0]
+  #     win_index_2 = win_combination[1]
+  #     win_index_3 = win_combination[2]
+  #
+  #     position_1 = board[win_index_1]
+  #     position_2 = board[win_index_2]
+  #     position_3 = board[win_index_3]
+  #
+  #     if position_1 == "X" && position_2 == "X" && position_3 == "X"
+  #         return win_combination
+  #     else
+  #       false
+  #     end
+  # end
+
   WIN_COMBINATIONS.each do |win_combination|
-      win_index_1 = win_combination[0]
-      win_index_2 = win_combination[1]
-      win_index_3 = win_combination[2]
-
-      position_1 = board[win_index_1]
-      position_2 = board[win_index_2]
-      position_3 = board[win_index_3]
-
-      if position_1 == "X" && position_2 == "X" && position_3 == "X"
-          return win_combination
-      else
-        false
+    all_taken = win_combination.any?{|p| position_taken?(board,p)}
+      if all_taken == true
+        if all_taken.all? == "X"
+          return "X"
+        elsif all_taken.all? == "O"
+          return "O"
+        end
       end
   end
 end
