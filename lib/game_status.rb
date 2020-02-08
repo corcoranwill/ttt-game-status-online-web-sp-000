@@ -37,6 +37,8 @@ def won?(board)
         elsif all_taken.all? == "O"
           return "O"
         end
+      elsif
+        return false
       end
   end
 end
