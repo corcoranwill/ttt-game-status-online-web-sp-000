@@ -46,26 +46,50 @@ end
 #   end
 # end
 
+
 def full?(board)
-  board.any?{|p| position_taken?(board, p)}
+  board.all? do |token|
+    token == "X" || token == "O"
+  end
 end
+
+
+# def full?(board)
+#   board.any?{|p| position_taken?(board, p)}
+# end
 
 def draw?(board)
-  if won? == false && full? == full?
-    return true
-  elsif won? == false && full? == false
-    return false
-  end
+  full?(board) && !won?(board)
 end
+
+# def draw?(board)
+#   if won? == false && full? == full?
+#     return true
+#   elsif won? == false && full? == false
+#     return false
+#   end
+# end
+#
 
 def over?(board)
-  if won? == true || draw? == true || full? == true
-    return true
+  draw?(board) ||
+  won?(board)
+end
+
+# def over?(board)
+#   if won? == true || draw? == true || full? == true
+#     return true
+#   end
+# end
+
+def winner(board)
+  if won?(board)
+    board[won?(board)[0]]
   end
 end
 
-def winner(board)
-  if winner = won?(board)
-    board[winner[0]]
-  end
-end
+# def winner(board)
+#   if winner = won?(board)
+#     board[winner[0]]
+#   end
+# end
