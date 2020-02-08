@@ -16,32 +16,35 @@ WIN_COMBINATIONS = [
   [2,4,6]
 ]
 
+
+# Check to see if there was a win
 def won?(board)
-  # return false / nil if there is no win combination
-  # return the winning combination indexes as an array if there is a win
-  # winner() will call this method to determine who won X or O
+  WIN_COMBINATIONS.detect do |win_combo|
+    position_1 = board[win_combo[0]]
+    position_2 = board[win_combo[1]]
+    position_3 = board[win_combo[2]]
 
-  # ---------
-
-  # IMPROVE UPON WHAT IS BELOW:
-  # utilize position_taken?
-  # be able to determine how the winner won whether the winner is X or O
-
-  # ---------
-
-  WIN_COMBINATIONS.each do |win_combination|
-    all_taken = win_combination.any?{|p| position_taken?(board,p)}
-      if all_taken == true
-        if all_taken.all? == "X"
-          return "X"
-        elsif all_taken.all? == "O"
-          return "O"
-        end
-      elsif
-        return false
-      end
+    position_1 == "X" && position_2 == "X" && position_3 == "X" ||
+    position_1 == "O" && position_2 == "O" && position_3 == "O"
   end
 end
+
+
+
+# def won?(board)
+#   WIN_COMBINATIONS.each do |win_combination|
+#     all_taken = win_combination.any?{|p| position_taken?(board,p)}
+#       if all_taken == true
+#         if all_taken.all? == "X"
+#           return "X"
+#         elsif all_taken.all? == "O"
+#           return "O"
+#         end
+#       elsif
+#         return false
+#       end
+#   end
+# end
 
 def full?(board)
   board.any?{|p| position_taken?(board, p)}
@@ -62,8 +65,7 @@ def over?(board)
 end
 
 def winner(board)
-  # return a token "X" or "O", depending on who won
-  # utilize the methods and the return values defined above
-
-
+  if winner = won?(board)
+    board[winner[0]]
+  end
 end
