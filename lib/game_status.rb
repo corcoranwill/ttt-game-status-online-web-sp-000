@@ -29,67 +29,33 @@ def won?(board)
   end
 end
 
-
-
-# def won?(board)
-#   WIN_COMBINATIONS.each do |win_combination|
-#     all_taken = win_combination.any?{|p| position_taken?(board,p)}
-#       if all_taken == true
-#         if all_taken.all? == "X"
-#           return "X"
-#         elsif all_taken.all? == "O"
-#           return "O"
-#         end
-#       elsif
-#         return false
-#       end
-#   end
-# end
-
-
+# Check to see if the board is full
+#=> all tokens == X or O
 def full?(board)
   board.all? do |token|
     token == "X" || token == "O"
   end
 end
 
-
-# def full?(board)
-#   board.any?{|p| position_taken?(board, p)}
-# end
-
+# Check to see if the game was a draw - 
+#=> full?() is true
+#=> won?() is false 
 def draw?(board)
   full?(board) && !won?(board)
 end
 
-# def draw?(board)
-#   if won? == false && full? == full?
-#     return true
-#   elsif won? == false && full? == false
-#     return false
-#   end
-# end
-#
-
+# Check to see if the game is over
+#=> draw?() is true 
+#=> OR
+#=> won?() is true
 def over?(board)
   draw?(board) ||
   won?(board)
 end
 
-# def over?(board)
-#   if won? == true || draw? == true || full? == true
-#     return true
-#   end
-# end
 
 def winner(board)
   if won?(board)
     board[won?(board)[0]]
   end
 end
-
-# def winner(board)
-#   if winner = won?(board)
-#     board[winner[0]]
-#   end
-# end
