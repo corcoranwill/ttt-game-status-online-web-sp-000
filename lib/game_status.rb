@@ -53,7 +53,9 @@ def over?(board)
   won?(board)
 end
 
-
+# Check to see who the winner was X or O
+#=> if won() = true
+#=> determine if the board[0] is X or O
 def winner(board)
   if won?(board)
     board[won?(board)[0]]
